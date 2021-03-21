@@ -85,10 +85,34 @@ later
 来源：力扣（LeetCode）
 链接：https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。  
-目前写法 可能有没考虑到的情况
+## 思路
+### 1. 先序遍历 + 判断深度 （从顶至底）：
+* isBalanced(root) 函数： 判断树 root 是否平衡
+
+特殊情况：若树根节点 root 为空，则直接返回 true ；
+**所有子树都需要满足平衡树性质**，与逻辑 and 连接：  
+** abs(self.depth(root.left) - self.depth(root.right)) <= 1 ：判断 当前子树 是否是平衡树；
+** self.isBalanced(root.left) ： 先序遍历递归，判断 当前子树的左子树 是否是平衡树；
+** self.isBalanced(root.right) ： 先序遍历递归，判断 当前子树的右子树 是否是平衡树；
+
+* depth(root) 函数： 计算树 root 的深度
+终止条件： 当 root 为空，即越过叶子节点，则返回高度0；
+返回值： 返回左 / 右子树的深度的最大值 +1 。
 ```python
 class Solution:
     def isBalanced(self, root: TreeNode) -> bool:
+        if not root: return True
+        return abs(self.maxDepth(root.left)-self.maxDepth(root.right)) <=1 and self.isBalanced(root.left) and self.isBalanced(root.right)
+    def maxDepth(self, root: TreeNode) -> int:
         if not root: return 0
-        return abs(self.isBalanced(root.left)-self.isBalanced(root.right)) <2
+        return max(self.maxDepth(root.left),self.maxDepth(root.right))+1
 ```
+执行用时：68 ms  O(N×logN)
+内存消耗：18.7 MB   O(N）不是最优选择
+### 2. 后序遍历 + 剪枝 （从底至顶）（下次）
+
+作者：jyd
+链接：https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/solution/mian-shi-ti-55-ii-ping-heng-er-cha-shu-cong-di-zhi/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
