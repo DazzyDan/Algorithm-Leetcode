@@ -18,10 +18,33 @@ def BFS(start: Node, target:Node):
             if cur is target:
                 return step
                 # 将cur的相邻节点加入队列
-                for x in cur.adj():
-                    if x not in visited:
-                        q.append(x)
-                        visited.add(x)
+           for x in cur.adj(): #adjacent nodes
+                if x not in visited:
+                    q.append(x)
+                    visited.add(x)
         # 划重点:更新步数在这里
         step += 1
+```
+```python
+import collections
+q = collections.deque([1,2])
+x=q.pop()
+print(x)
+
+```
+q.pop() : pop from right. 
+print : 2. 
+q.popleft():pop from left => like the real queue
+
+```python
+import collections
+r = [3,9,20,1,1,15,7]
+q = collections.deque([(r,2)])
+x=q.pop()
+print(x)
+```
+Result:
+```python
+>>>
+    ([3, 9, 20, 1, 1, 15, 7], 2)
 ```
