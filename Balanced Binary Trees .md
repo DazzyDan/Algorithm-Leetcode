@@ -47,7 +47,21 @@ class Solution:
         return max(self.maxDepth(root.left),self.maxDepth(root.right))+1 
 ```
 ### 2. 层序遍历（BFS）
-later  
+```python
+def minDepth(self, root: TreeNode) -> int:
+        if not root: return 0
+        q = collections.deque([(root,1)])
+
+        while q: 
+            cur, depth = q.popleft()
+            if cur.left is None and cur.right is None:
+                return depth
+            if cur.left :
+                q.append((cur.left,depth+1))
+            if cur.right:
+                q.append((cur.right,depth+1))
+        return 0
+```
 # 剑指 Offer 55 - II. 平衡二叉树
 输入一棵二叉树的根节点，判断该树是不是平衡二叉树。如果某二叉树中任意节点的左右子树的深度相差不超过1，那么它就是一棵平衡二叉树。  
 示例 1:
