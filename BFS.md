@@ -48,3 +48,38 @@ Result:
 >>>
     ([3, 9, 20, 1, 1, 15, 7], 2)
 ```
+102. 二叉树的层序遍历. 
+```python
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        if not root:
+            return []
+        q = collections.deque()
+        b = list()
+        #initial
+        q.append(root)
+
+        #bfs
+        while q:
+            tmp = list()
+            l = len(q)
+            for i in range(l):
+                v = q.popleft()
+                # For tree, we should use node.val to get value
+                tmp.append(v.val)
+                # traversal
+                if v.left:
+                    q.append(v.left)
+
+                if v.right:
+                    q.append(v.right)
+            if tmp:
+                b.append(tmp)
+        return b
+```
+But if use:
+Screen Shot 2021-05-16 at 11.18.03![image](https://user-images.githubusercontent.com/73490814/118392168-6db60000-b638-11eb-999c-7cfb20c3aa9c.png)
+The result is error:
+Screen Shot 2021-05-16 at 11.18.09![image](https://user-images.githubusercontent.com/73490814/118392174-77d7fe80-b638-11eb-93d6-cc06952296ce.png)
+Therefore :!!!!  
+It means that if v.val is Null, we transit it to assign a value,(❌）
