@@ -82,4 +82,7 @@ Screen Shot 2021-05-16 at 11.18.03![image](https://user-images.githubusercontent
 The result is error:
 Screen Shot 2021-05-16 at 11.18.09![image](https://user-images.githubusercontent.com/73490814/118392174-77d7fe80-b638-11eb-93d6-cc06952296ce.png)
 Therefore :!!!!  
-It means that if v.val is Null, we transit it to assign a value,(❌）
+❌：It's not the problem of trasmitting value. 
+The point is that i didn't set initial check
+Screen Shot 2021-05-16 at 11.21.55![image](https://user-images.githubusercontent.com/73490814/118392278-22502180-b639-11eb-92a3-5f1570512b30.png)
+
