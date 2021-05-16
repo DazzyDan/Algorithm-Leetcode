@@ -85,4 +85,28 @@ Therefore :!!!!
 ❌：It's not the problem of trasmitting value. 
 The point is that i didn't set initial check
 Screen Shot 2021-05-16 at 11.21.55![image](https://user-images.githubusercontent.com/73490814/118392278-22502180-b639-11eb-92a3-5f1570512b30.png)
-
+## 101. 对称二叉树  
+```python
+class Solution:
+    def isSymmetric(self, root: TreeNode) -> bool:
+        if not root:
+            return False
+        q = collections.deque()
+        # initial: like two point
+        q.append((root,root))
+        #bfs
+        while q:
+            left,right = q.popleft()               
+            #check
+            if not right and not left:
+                continue
+            if not left or not right:
+                return False 
+            if right.val != left.val:
+                return False
+            q.append((left.left,right.right))
+            q.append((left.right,right.left))
+        return True
+ ```
+ #####  Point : queue 里可以放多个变量
+ 
