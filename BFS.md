@@ -110,8 +110,8 @@ class Solution:
  ```
  #####  Point : queue 里可以放多个变量
  ## 剑指 Offer 32 - III. 从上到下打印二叉树 III 
- # 要点： “之”字形print #
- # 思路 ： 前面正常思路append，在输出时用奇偶数分辨并变化输出顺序#
+ **要点： “之”字形print**   
+ **思路 ： 前面正常思路append，在输出时用奇偶数分辨并变化输出顺序**
  ```python
  if not root:
     return []
