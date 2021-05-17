@@ -142,4 +142,33 @@ while q:
     d +=1                 
 return res
  ```
- 
+ ##200 岛屿数量
+ **思路**
+ * 设置result=0
+ * 寻找为1的值=>找到：result+=1
+ * 如果是‘1’，替换成‘0’
+ * 继续寻找这个‘1’上下左右为‘1’的点（dfs）
+```python
+
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        result = 0
+        m = len(grid)
+        n = len(grid[0])
+        def dfs(grid,i,j):
+            if not 0<=i<m or not 0<=j<n or grid[i][j]=='0': return
+            if grid[i][j]=='1':
+                grid[i][j]='0'
+                dfs(grid,i+1,j)
+                dfs(grid,i-1,j)
+                dfs(grid,i,j-1)
+                dfs(grid,i,j+1)
+        if not grid: return None
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j]=='0': continue
+                else: 
+                    result +=1
+                    dfs(grid,i,j)
+        return result
+```
