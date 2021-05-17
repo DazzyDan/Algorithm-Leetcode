@@ -109,4 +109,37 @@ class Solution:
         return True
  ```
  #####  Point : queue 里可以放多个变量
+ ## 剑指 Offer 32 - III. 从上到下打印二叉树 III 
+ # 要点： “之”字形print #
+ # 思路 ： 前面正常思路append，在输出时用奇偶数分辨并变化输出顺序#
+ ```python
+ if not root:
+    return []
+q = collections.deque()
+#initial
+d = 0
+q.append(root)
+res = []
+
+#bfs:
+while q:
+    tmp = []            
+    for i in range(len(q)):
+        #normalize
+        v= q.popleft()
+        tmp.append(v.val)
+        #traversal
+        if v.left:
+            q.append(v.left)
+        if v.right:
+            q.append(v.right)
+    #target
+    #means: !=0
+    if (d % 2) :
+        res.append(tmp[::-1])
+    else:
+        res.append(tmp)           
+    d +=1                 
+return res
+ ```
  
