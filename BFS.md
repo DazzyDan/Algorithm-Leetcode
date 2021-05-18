@@ -210,4 +210,40 @@ class Solution:
                     results+=1
         return results
 ```
-### 完美二叉树(Perfect Binary Tree): = 满二叉树： all leaf nodes at the same depth.  
+### 完美二叉树(Perfect Binary Tree): = 满二叉树： all leaf nodes at the same depth. 
+116. 填充每个节点的下一个右侧节点指针. 
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val: int = 0, left: 'Node' = None, right: 'Node' = None, next: 'Node' = None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+"""
+
+class Solution:
+    def connect(self, root: 'Node') -> 'Node':
+        # 这里不能return【】
+        if not root:
+            return root
+        q = collections.deque()
+        #initial 
+        q.append(root)
+
+        #bfs
+        while q:
+            # 这里的len(q)是定值，就是说是以前面的值得到的，后面q变化，这里的len都不会变
+            m = len(q)
+            for i in range(m):
+                node = q.popleft()          
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
+                #画出图，找规律
+                if i < m-1:
+                    node.next =q[0]
+        return root
+```
