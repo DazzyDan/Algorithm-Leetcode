@@ -210,3 +210,4 @@ class Solution:
                     results+=1
         return results
 ```
+### 完美二叉树(Perfect Binary Tree): = 满二叉树： all leaf nodes at the same depth.  
