@@ -178,7 +178,8 @@ class Solution:
 * check其‘上，下，左，右’：用bfs
 * 加入queue，check if its neighbors are '1', add into queue
 * until the queue is empty
-**注意⚠️**： 边界限制：0<=a **<** len(grid)
+**注意⚠️**： 边界限制：0<=a **<** len(grid). 
+*Cuz this list. start from 0, so the length is the index of the last item +1*
 ```python
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
