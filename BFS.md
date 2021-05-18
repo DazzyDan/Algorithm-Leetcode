@@ -172,3 +172,40 @@ class Solution:
                     dfs(grid,i,j)
         return result
 ```
+### BFS
+**思路**：  
+* 把岛屿抓住（grid[i][j]=='1')
+* check其‘上，下，左，右’：用bfs
+* 加入queue，check if its neighbors are '1', add into queue
+* until the queue is empty
+**注意⚠️**： 边界限制：0<=a **<** len(grid)
+```python
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        if not grid:
+            return 0
+
+        # bfs:
+        def bfs(grid,i,j):
+            q = collections.deque()
+            # initial 
+            q.append((i,j))
+            grid[i][j]='0'
+            while q:
+                x,y = q.popleft()
+                # check its neighbors(up,down,left,right)
+                for a,b in ((x+1,y),(x-1,y),(x,y+1),(x,y-1)):
+                    if 0<=a<len(grid) and 0<=b<len(grid[0]) and grid[a][b]=='1':
+                        q.append((a,b))
+                        grid[a][b]='0'
+
+        # main
+        results = 0
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j]=='1':
+                    # check its adj
+                    bfs(grid,i,j)
+                    results+=1
+        return results
+```
