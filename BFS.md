@@ -247,3 +247,56 @@ class Solution:
                     node.next =q[0]
         return root
 ```
+### 994. 腐烂的橘子
+**总体思路:**
+* 找出所有为2 的橘子， 把其位置输入队列
+* 找出1 的橘子，计数
+* 目标：为1 的橘子为0
+* 运用bfs，把=2 的橘子输入队列后，找它上下左右的橘子，如果是1也输入队列，并将其设为0
+* 直到队列为空或没有为1的橘子
+**易错点:** list都是从0 开始计数的， 所以 r-1>= 0 **别忘了等于0**
+
+```python
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        if not grid: return -1
+        q = collections.deque()
+        #initial 
+        # count 1
+        count = 0
+        time = 0
+        # Put all (2) into the queue
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] ==2:
+                    q.append((i,j))
+                if grid[i][j] ==1:
+                    count +=1
+        # bfs
+        while q and count > 0 :
+            time +=1
+            for h in range(len(q)):
+                # row and column coordinates of 2
+                r,c = q.popleft()
+                # 从0开始计数
+                if r-1>=0 and grid[r-1][c]==1:
+                    q.append((r-1,c))
+                    grid[r-1][c] =2
+                    count -=1
+                if r+1<len(grid) and grid[r+1][c]==1:
+                    q.append((r+1,c))
+                    grid[r+1][c]=2
+                    count -=1
+                if c-1>=0 and grid[r][c-1]==1:
+                    q.append((r,c-1))
+                    grid[r][c-1] =2
+                    count -=1
+                if c+1<len(grid[0]) and grid[r][c+1]==1:
+                    q.append((r,c+1))
+                    grid[r][c+1] =2
+                    count -=1
+        if count >0:
+            return -1
+        else: 
+            return time
+```
