@@ -300,3 +300,59 @@ class Solution:
         else: 
             return time
 ```
+## 
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
+        if not p and not q:
+            return True
+        if not p or not q:
+            return False
+        #bfs
+        queQ = collections.deque()
+        queP = collections.deque()
+        queP.append(p)
+        queQ.append(q)
+
+        while queP and queQ:
+            nP = len(queP)
+            nQ = len(queQ)
+
+            curP = queP.popleft()
+            curQ = queQ.popleft()
+            
+            if curP.val !=curQ.val:
+                return False
+            if (not curP.left) ^ (not curQ.left):
+                return False
+            if (not curP.right) ^ (not curQ.right):
+                return False
+            if curP.left:
+                queP.append(curP.left)       
+            if curP.right:
+                queP.append(curP.right)
+            if curQ.left:
+                queQ.append(curQ.left)
+            if curQ.right:
+                queQ.append(curQ.right)            
+        return not queQ and not queP
+ ```
+ 重点： 
+ ```python
+ if (not curP.left) ^ (not curQ.left):
+                return False
+ if (not curP.right) ^ (not curQ.right):
+                return False
+ ```
+ ^ : xor: Sets each bit to 1 if only one of two bits is 1 只有一个为null的时候  
+ or： Sets each bit to 1 if one of two bits is 1 两个中只要有null  
+ 这两个概念是不同的，之前一直出错是因为把xor的概念当成or， 虽然很小的差距，但是结果一直是错的
+
+
+ ```python
