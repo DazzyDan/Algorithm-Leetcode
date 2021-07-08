@@ -355,7 +355,7 @@ class Solution:
  or： Sets each bit to 1 if one of two bits is 1 两个中只要有null  
  这两个概念是不同的，之前一直出错是因为把xor的概念当成or， 虽然很小的差距，但是结果一直是错的
 
-
+## DFS:   
  ```python
 class Solution:
     def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
