@@ -1,3 +1,5 @@
+![image](https://user-images.githubusercontent.com/73490814/135344953-702a3461-76ed-49aa-a753-e9a0c56f659f.png)
+
 ## 框架
 ```python
 # BFS算法框架: 计算从起点 start 到终点 target 的最近距离
